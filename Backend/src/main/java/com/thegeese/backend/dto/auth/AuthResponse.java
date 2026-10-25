@@ -1,15 +1,12 @@
-package com.thegeese.backend.dto;
+package com.thegeese.backend.dto.auth;
 
 import com.thegeese.backend.roles.Role;
 
-public record UserDetailResponse(
+public record AuthResponse(
         Long id,
         String firstName,
         String lastName,
         String email,
-        String country,
-        String city,
-        Double rating,
         Role role
 ) {
 }

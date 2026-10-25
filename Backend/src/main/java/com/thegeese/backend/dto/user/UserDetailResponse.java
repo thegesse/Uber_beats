@@ -1,14 +1,15 @@
-package com.thegeese.backend.dto;
+package com.thegeese.backend.dto.user;
 
 import com.thegeese.backend.roles.Role;
 
-import java.time.LocalDate;
-
-public record AuthResponse(
+public record UserDetailResponse(
         Long id,
         String firstName,
         String lastName,
         String email,
+        String country,
+        String city,
+        Double rating,
         Role role
 ) {
 }

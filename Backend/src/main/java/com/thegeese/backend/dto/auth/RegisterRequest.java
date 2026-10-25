@@ -1,4 +1,4 @@
-package com.thegeese.backend.dto;
+package com.thegeese.backend.dto.auth;
 
 import com.thegeese.backend.roles.Role;
 import jakarta.validation.constraints.Email;

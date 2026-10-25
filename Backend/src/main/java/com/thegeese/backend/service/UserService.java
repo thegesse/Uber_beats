@@ -1,7 +1,7 @@
 package com.thegeese.backend.service;
 
-import com.thegeese.backend.dto.UserDetailResponse;
-import com.thegeese.backend.dto.UserListResponse;
+import com.thegeese.backend.dto.user.UserDetailResponse;
+import com.thegeese.backend.dto.user.UserListResponse;
 import com.thegeese.backend.model.User;
 import com.thegeese.backend.repository.UserRepository;
 import org.springframework.data.domain.Page;
@@ -16,7 +16,7 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
+    //TODO make a mapper for these bits of code
     private UserListResponse toUserListDto(User user) {
         return new UserListResponse(
                 user.getId(),

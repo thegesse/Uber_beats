@@ -1,6 +1,7 @@
 package com.thegeese.backend.service;
 
-import com.thegeese.backend.dto.AuthResponse;
+import com.thegeese.backend.dto.auth.AuthResponse;
+import com.thegeese.backend.dto.auth.RegisterRequest;
 import com.thegeese.backend.model.User;
 import com.thegeese.backend.repository.UserRepository;
 import com.thegeese.backend.roles.Role;
@@ -40,25 +41,24 @@ public class AuthService {
         }
     }
 
-    public AuthResponse register(String firstName, String lastName, String email, String password,
-                                 LocalDate dateOfBirth, String country, String city, Role role) {
-        if(userRepository.findByEmail(email).isPresent()) {
+    public AuthResponse register(RegisterRequest request) {
+        if(userRepository.findByEmail(request.email()).isPresent()) {
             throw new IllegalArgumentException("email already registered");
         }
 
         //TODO have a valid country and city validator
         //TODO add password hasher
-        requireAdult(dateOfBirth);
-        Role assignedRole = role == Role.FADER ? Role.FADER : Role.USER;
+        requireAdult(request.dateOfBirth());
+        Role assignedRole = request.role() == Role.FADER ? Role.FADER : Role.USER;
 
         User user = new User();
-        user.setFirstname(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setDateOfBirth(dateOfBirth);
-        user.setCountry(country);
-        user.setCity(city);
+        user.setFirstname(request.firstName());
+        user.setLastName(request.lastName());
+        user.setEmail(request.email());
+        user.setPassword(request.password());
+        user.setDateOfBirth(request.dateOfBirth());
+        user.setCountry(request.country());
+        user.setCity(request.city());
         user.setRole(assignedRole);
         user.setRating(0.0);
 

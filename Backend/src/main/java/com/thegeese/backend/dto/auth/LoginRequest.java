@@ -1,4 +1,4 @@
-package com.thegeese.backend.dto;
+package com.thegeese.backend.dto.auth;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

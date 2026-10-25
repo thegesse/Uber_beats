@@ -1,4 +1,4 @@
-package com.thegeese.backend.dto;
+package com.thegeese.backend.dto.user;
 
 public record UserListResponse(
         Long id,
