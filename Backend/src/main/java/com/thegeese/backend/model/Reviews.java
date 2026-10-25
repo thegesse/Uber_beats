@@ -22,7 +22,7 @@ public class Reviews {
     @JoinColumn(name = "reviewed_id")
     private User reviewed;
 
-    private int rating;
+    private Integer rating;
 
     private String comment;
 }
