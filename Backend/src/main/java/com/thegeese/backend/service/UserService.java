@@ -37,7 +37,7 @@ public class UserService {
         Page<User> users;
 
         if (country != null && city != null) {
-            users = userRepository.findByCityIgnoreCaseAndByCountryIgnoreCase(city, country, page);
+            users = userRepository.findByCityIgnoreCaseAndCountryIgnoreCase(city, country, page);
         } else if (country != null) {
             users = userRepository.findByCountryIgnoreCase(country, page);
         }else if (city != null) {
@@ -56,7 +56,7 @@ public class UserService {
     }
 
     public Page<UserListResponse> getUserByFirstName(String firstName, Pageable page) {
-        return userRepository.findByFirstNameIgnoreCase(firstName, page)
+        return userRepository.findByFirstnameIgnoreCase(firstName, page)
                 .map(this::toUserListDto);
     }
 

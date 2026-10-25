@@ -30,6 +30,5 @@ public class Order {
     @Column(nullable = false)
     Boolean completed;
 
-    @Column(nullable = false)
     LocalDateTime completedAt;
 }

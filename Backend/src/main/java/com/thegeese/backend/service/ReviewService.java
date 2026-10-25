@@ -1,7 +1,8 @@
 package com.thegeese.backend.service;
 
-import com.thegeese.backend.dto.CreateReviewRequest;
-import com.thegeese.backend.dto.ReviewResponse;
+import com.thegeese.backend.dto.review.CreateReviewRequest;
+import com.thegeese.backend.dto.review.ReviewResponse;
+import com.thegeese.backend.model.Order;
 import com.thegeese.backend.model.Reviews;
 import com.thegeese.backend.model.User;
 import com.thegeese.backend.repository.ReviewRepository;
@@ -48,12 +49,7 @@ public class ReviewService {
 
         reviewed.setRating(reviewRepository.averageRatingForUser(review.getId()));
 
-        return new ReviewResponse(
-                saved.getId(),
-                reviewer.getId(),
-                saved.getRating(),
-                saved.getComment()
-        );
+        return toReviewDto(saved);
     }
 
     // for admin use mostly
@@ -63,11 +59,15 @@ public class ReviewService {
     }
 
     //use this for get all preferable
-    public Page<ReviewResponse> getAllReviewsForUser(Pageable page, Long reviewedId) {
+    public Page<ReviewResponse> getReviewsForUser(Pageable page, Long reviewedId) {
         return reviewRepository.findByReviewedId(reviewedId, page)
                 .map(this::toReviewDto);
     }
 
-    
+    public void deletereview(Long reviewId) {
+        Reviews reviews = reviewRepository.findById(reviewId).orElseThrow(() -> new RuntimeException("Review not found"));
+
+        reviewRepository.deleteById(reviews.getId());
+    }
 
 }

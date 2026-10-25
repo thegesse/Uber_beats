@@ -1,7 +1,5 @@
-package com.thegeese.backend.dto;
+package com.thegeese.backend.dto.review;
 
-import com.thegeese.backend.model.User;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
